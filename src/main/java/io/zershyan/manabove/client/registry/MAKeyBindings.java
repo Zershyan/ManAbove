@@ -1,8 +1,8 @@
-package io.zershyan.standupandpedal.client.registry;
+package io.zershyan.manabove.client.registry;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import io.zershyan.standupandpedal.ManAbove;
-import io.zershyan.standupandpedal.datagen.init.TranslatableLang;
+import io.zershyan.manabove.ManAbove;
+import io.zershyan.manabove.datagen.init.MATranslatableLang;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.Identifier;
 import net.neoforged.bus.api.IEventBus;
@@ -15,15 +15,15 @@ import org.lwjgl.glfw.GLFW;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SUAPKeyBindings {
+public class MAKeyBindings {
     public static final List<Lazy<KeyMapping>> keys = new ArrayList<>();
     public static final KeyMapping.Category CATEGORY = new KeyMapping.Category(Identifier.fromNamespaceAndPath(ManAbove.MODID, "category"));
 
-    public static final Lazy<KeyMapping> KEY_RIDE = registerKeyMapping(TranslatableLang.KEY_RIDE.getKey());
-    public static final Lazy<KeyMapping> KEY_POS_1 = registerCtrlKeyMapping(TranslatableLang.KEY_POS_1.getKey(), GLFW.GLFW_KEY_1);
-    public static final Lazy<KeyMapping> KEY_POS_2 = registerCtrlKeyMapping(TranslatableLang.KEY_POS_2.getKey(), GLFW.GLFW_KEY_2);
-    public static final Lazy<KeyMapping> KEY_POS_3 = registerCtrlKeyMapping(TranslatableLang.KEY_POS_3.getKey(), GLFW.GLFW_KEY_3);
-    public static final Lazy<KeyMapping> KEY_POS_4 = registerCtrlKeyMapping(TranslatableLang.KEY_POS_4.getKey(), GLFW.GLFW_KEY_4);
+    public static final Lazy<KeyMapping> KEY_RIDE = registerKeyMapping(MATranslatableLang.KEY_RIDE.getKey());
+    public static final Lazy<KeyMapping> KEY_POS_1 = registerCtrlKeyMapping(MATranslatableLang.KEY_POS_1.getKey(), GLFW.GLFW_KEY_1);
+    public static final Lazy<KeyMapping> KEY_POS_2 = registerCtrlKeyMapping(MATranslatableLang.KEY_POS_2.getKey(), GLFW.GLFW_KEY_2);
+    public static final Lazy<KeyMapping> KEY_POS_3 = registerCtrlKeyMapping(MATranslatableLang.KEY_POS_3.getKey(), GLFW.GLFW_KEY_3);
+    public static final Lazy<KeyMapping> KEY_POS_4 = registerCtrlKeyMapping(MATranslatableLang.KEY_POS_4.getKey(), GLFW.GLFW_KEY_4);
 
     private static Lazy<KeyMapping> registerKeyMapping(String name) {
         Lazy<KeyMapping> mappingLazy = Lazy.of(() -> new KeyMapping(name, KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_R, CATEGORY));
@@ -39,10 +39,10 @@ public class SUAPKeyBindings {
 
     public static void registerKeyBinding(RegisterKeyMappingsEvent event) {
         event.registerCategory(CATEGORY);
-        SUAPKeyBindings.keys.stream().map(Lazy::get).forEach(event::register);
+        MAKeyBindings.keys.stream().map(Lazy::get).forEach(event::register);
     }
 
     public static void register(IEventBus eventBus) {
-        eventBus.addListener(SUAPKeyBindings::registerKeyBinding);
+        eventBus.addListener(MAKeyBindings::registerKeyBinding);
     }
 }

@@ -1,4 +1,4 @@
-package io.zershyan.standupandpedal.mixin.standupandpedal.common;
+package io.zershyan.manabove.mixin.manabove.common;
 
 import net.minecraft.network.protocol.game.ClientboundSetPassengersPacket;
 import net.minecraft.server.level.ServerEntity;

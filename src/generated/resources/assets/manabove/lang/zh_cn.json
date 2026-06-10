@@ -1,0 +1,11 @@
+{
+  "DeferredHolder{ResourceKey[minecraft:sound_event / manabove:pretentious]}": "装逼！",
+  "DeferredHolder{ResourceKey[minecraft:sound_event / manabove:weightlessness]}": "有强烈失重感",
+  "manabove.message..key.category": "高人一等",
+  "manabove.message..key.pos_1": "默认姿势",
+  "manabove.message..key.pos_2": "坐到左肩",
+  "manabove.message..key.pos_3": "坐到右肩",
+  "manabove.message..key.pos_4": "骑大马",
+  "manabove.message..key.ride": "高人一等/飞起来",
+  "manabove.resources": "Resources for ManAbove"
+}

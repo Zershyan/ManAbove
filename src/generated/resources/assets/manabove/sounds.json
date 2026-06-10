@@ -1,0 +1,15 @@
+{
+  "pretentious": {
+    "sounds": [
+      "manabove:pretentious_0",
+      "manabove:pretentious_1"
+    ],
+    "subtitle": "subtitle.manabove.sound.pretentious"
+  },
+  "weightlessness": {
+    "sounds": [
+      "manabove:weightlessness"
+    ],
+    "subtitle": "subtitle.manabove.sound.weightlessness"
+  }
+}

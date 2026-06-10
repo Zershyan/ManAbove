@@ -1,13 +1,15 @@
 {
 	"required": true,
 	"minVersion": "0.8",
-	"package": "io.zershyan.standupandpedal.mixin",
+	"package": "io.zershyan.manabove.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
-		"standupandpedal.common.MixinEntity",
-		"standupandpedal.common.MixinServerEntity"
+		"manabove.common.MixinEntity",
+		"manabove.common.MixinProjectileUtil",
+		"manabove.common.MixinServerEntity"
 	],
 	"client": [
+		"manabove.client.MixinCamera"
 	],
 	"injectors": {
 		"defaultRequire": 1

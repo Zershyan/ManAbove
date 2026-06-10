@@ -1,8 +1,12 @@
-package io.zershyan.standupandpedal.network;
+package io.zershyan.manabove.network;
 
-import io.zershyan.standupandpedal.ManAbove;
-import io.zershyan.standupandpedal.network.data.UUIDData;
-import io.zershyan.standupandpedal.network.handler.ServerPayloadHandler;
+import io.zershyan.manabove.ManAbove;
+import io.zershyan.manabove.network.data.FlyPlayerUpData;
+import io.zershyan.manabove.network.data.RidePlayerData;
+import io.zershyan.manabove.network.data.RidePosData;
+import io.zershyan.manabove.network.data.SoundData;
+import io.zershyan.manabove.network.handler.ClientPayloadHandler;
+import io.zershyan.manabove.network.handler.ServerPayloadHandler;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
@@ -25,6 +29,11 @@ public class PayloadRegister {
     @SubscribeEvent
     public static void register(RegisterPayloadHandlersEvent event) {
         PayloadRegistrar registrar = event.registrar(PROTOCOL_VERSION);
-        registrar.playToServer(UUIDData.TYPE, UUIDData.STREAM_CODEC, ServerPayloadHandler::ridePlayer);
+        //server
+        registrar.playToServer(RidePlayerData.TYPE, RidePlayerData.STREAM_CODEC, ServerPayloadHandler::ridePlayer);
+        registrar.playToServer(FlyPlayerUpData.TYPE, FlyPlayerUpData.STREAM_CODEC, ServerPayloadHandler::flyPlayerUp);
+        registrar.playToServer(RidePosData.TYPE, RidePosData.STREAM_CODEC, ServerPayloadHandler::ridePos);
+        //client
+        registrar.playToClient(SoundData.TYPE, SoundData.STREAM_CODEC, ClientPayloadHandler::playSound);
     }
 }

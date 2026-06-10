@@ -10,16 +10,16 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-public record UUIDData(UUID uuid) implements CustomPacketPayload{
-    public static final CustomPacketPayload.Type<@NotNull UUIDData> RIDE_PLAYER = new CustomPacketPayload.Type<>(
+public record RidePlayerData(UUID uuid) implements CustomPacketPayload{
+    public static final CustomPacketPayload.Type<@NotNull RidePlayerData> TYPE = new CustomPacketPayload.Type<>(
             Identifier.fromNamespaceAndPath(ManAbove.MODID, "ride_player"));
 
-    public static final StreamCodec<ByteBuf, UUIDData> STREAM_CODEC = StreamCodec.composite(
-            UUIDUtil.STREAM_CODEC, UUIDData::uuid, UUIDData::new
+    public static final StreamCodec<ByteBuf, RidePlayerData> STREAM_CODEC = StreamCodec.composite(
+            UUIDUtil.STREAM_CODEC, RidePlayerData::uuid, RidePlayerData::new
     );
 
     @Override
     public @NotNull CustomPacketPayload.Type<? extends @NotNull CustomPacketPayload> type() {
-        return RIDE_PLAYER;
+        return TYPE;
     }
 }

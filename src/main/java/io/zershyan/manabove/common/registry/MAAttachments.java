@@ -1,4 +1,4 @@
-package io.zershyan.manabove.common;
+package io.zershyan.manabove.common.registry;
 
 import com.mojang.serialization.Codec;
 import io.zershyan.manabove.ManAbove;
@@ -26,7 +26,7 @@ public class MAAttachments {
                 .copyOnDeath()
                 .build());
         RIDE_POS = REGISTRY.register("ride_pos", () -> AttachmentType
-                .builder(() -> 0)
+                .builder(() -> 1)
                 .serialize(Codec.INT.fieldOf("ride_pos"))
                 .sync(ByteBufCodecs.INT)
                 .copyOnDeath()

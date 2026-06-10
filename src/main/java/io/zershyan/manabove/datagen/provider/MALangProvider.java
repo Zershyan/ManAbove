@@ -1,8 +1,8 @@
-package io.zershyan.standupandpedal.datagen.provider;
+package io.zershyan.manabove.datagen.provider;
 
 import com.mojang.logging.LogUtils;
-import io.zershyan.standupandpedal.ManAbove;
-import io.zershyan.standupandpedal.datagen.init.SUAPLang;
+import io.zershyan.manabove.ManAbove;
+import io.zershyan.manabove.datagen.init.MALang;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffect;
@@ -12,15 +12,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
-public class SUAPLangProvider extends LanguageProvider {
+public class MALangProvider extends LanguageProvider {
     private final String locale;
     private static final String enUs = "en_us";
     private static final String zhCn = "zh_cn";
     static {
-        SUAPLang.init();
+        MALang.init();
     }
 
-    public SUAPLangProvider(PackOutput output, String locale) {
+    public MALangProvider(PackOutput output, String locale) {
         super(output, ManAbove.MODID, locale);
         this.locale = locale;
     }
@@ -28,9 +28,9 @@ public class SUAPLangProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         switch (locale){
-            case enUs -> SUAPLang.langList.forEach(langEntity -> addTranslation(
+            case enUs -> MALang.langList.forEach(langEntity -> addTranslation(
                     langEntity.key(), langEntity.lang().enUs()));
-            case zhCn -> SUAPLang.langList.forEach(langEntity -> addTranslation(
+            case zhCn -> MALang.langList.forEach(langEntity -> addTranslation(
                     langEntity.key(), langEntity.lang().zhCn()));
         }
     }
@@ -52,11 +52,11 @@ public class SUAPLangProvider extends LanguageProvider {
         }
     }
 
-    public static SUAPLangProvider runZhCn(PackOutput output) {
-        return new SUAPLangProvider(output, zhCn);
+    public static MALangProvider runZhCn(PackOutput output) {
+        return new MALangProvider(output, zhCn);
     }
 
-    public static SUAPLangProvider runEnUs(PackOutput output) {
-        return new SUAPLangProvider(output, enUs);
+    public static MALangProvider runEnUs(PackOutput output) {
+        return new MALangProvider(output, enUs);
     }
 }
