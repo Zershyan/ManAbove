@@ -13,17 +13,20 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 public class ManAboveApi {
     public static final String MODID = ManAbove.MODID;
+    @NotNull
     private final Entity entity;
 
-    ManAboveApi(Entity entity) {
+    ManAboveApi(@NonNull Entity entity) {
         this.entity = entity;
     }
 
-    public static ManAboveApi get(Entity entity) {
+    public static ManAboveApi get(@NotNull Entity entity) {
         return new ManAboveApi(entity);
     }
 
