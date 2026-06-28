@@ -69,6 +69,7 @@ public class PlayerRenderHandler {
     public static void playerRenderPost(RenderPlayerEvent.Post<AbstractClientPlayer> event) {
         AvatarRenderState renderState = event.getRenderState();
         Avatar avatar = renderState.getRenderData(MARenderStateModifiers.AVATAR);
+        if(avatar == null) return;
         if(ManAboveApi.get(avatar).isRidePlayer()) {
             event.getPoseStack().popPose();
         }
