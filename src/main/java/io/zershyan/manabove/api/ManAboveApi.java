@@ -15,14 +15,13 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.jspecify.annotations.NonNull;
 
 public class ManAboveApi {
     public static final String MODID = ManAbove.MODID;
     @NotNull
     private final Entity entity;
 
-    ManAboveApi(@NonNull Entity entity) {
+    ManAboveApi(@NotNull Entity entity) {
         this.entity = entity;
     }
 
