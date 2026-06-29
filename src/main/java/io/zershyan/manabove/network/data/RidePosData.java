@@ -5,12 +5,10 @@ import io.zershyan.manabove.ManAbove;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
-import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 public record RidePosData(int integer) implements CustomPacketPayload {
-    public static final CustomPacketPayload.Type<@NotNull RidePosData> TYPE = new CustomPacketPayload.Type<>(
-            Identifier.fromNamespaceAndPath(ManAbove.MODID, "ride_pos"));
+    public static final CustomPacketPayload.Type<@NotNull RidePosData> TYPE = new CustomPacketPayload.Type<>(ManAbove.id("ride_pos"));
 
     public static final StreamCodec<ByteBuf, RidePosData> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.INT, RidePosData::integer, RidePosData::new

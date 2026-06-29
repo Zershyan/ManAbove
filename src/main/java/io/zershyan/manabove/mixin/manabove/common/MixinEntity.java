@@ -22,7 +22,7 @@ public class MixinEntity {
     private AABB bb;
 
     @WrapOperation(
-            method = "startRiding(Lnet/minecraft/world/entity/Entity;ZZ)Z",
+            method = "startRiding(Lnet/minecraft/world/entity/Entity;)Z",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/EntityType;canSerialize()Z")
     )
     public boolean startRiding(EntityType<?> instance, Operation<Boolean> original, Entity entityToRide) {

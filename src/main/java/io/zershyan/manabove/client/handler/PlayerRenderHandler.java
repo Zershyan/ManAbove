@@ -3,10 +3,8 @@ package io.zershyan.manabove.client.handler;
 import com.mojang.blaze3d.vertex.PoseStack;
 import io.zershyan.manabove.ManAbove;
 import io.zershyan.manabove.api.ManAboveApi;
-import io.zershyan.manabove.client.registry.MARenderStateModifiers;
 import net.minecraft.client.player.AbstractClientPlayer;
-import net.minecraft.client.renderer.entity.state.AvatarRenderState;
-import net.minecraft.world.entity.Avatar;
+import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -21,15 +19,13 @@ public class PlayerRenderHandler {
     public static final float pos4Offset = 0.25f;
 
     @SubscribeEvent
-    public static void playerRenderPre(RenderPlayerEvent.Pre<AbstractClientPlayer> event) {
-        AvatarRenderState renderState = event.getRenderState();
-        Avatar avatar = renderState.getRenderData(MARenderStateModifiers.AVATAR);
-        if(avatar == null) return;
-        if(ManAboveApi.get(avatar).isRidePlayer()) {
-            int pos = ManAboveApi.get(avatar).getRidePos();
+    public static void playerRenderPre(RenderPlayerEvent event) {
+        Player player = event.getEntity();
+        if(ManAboveApi.get(player).isRidePlayer()) {
+            int pos = ManAboveApi.get(player).getRidePos();
             PoseStack poseStack = event.getPoseStack();
             poseStack.pushPose();
-            if(!(avatar.getVehicle() instanceof AbstractClientPlayer target)) return;
+            if(!(player.getVehicle() instanceof AbstractClientPlayer target)) return;
             float partialTick = event.getPartialTick();
             switch (pos) {
                 case 1 -> {
@@ -61,43 +57,15 @@ public class PlayerRenderHandler {
                     poseStack.translate(pos4Offset, -0.4f, 0);
                 }
             }
-            renderState.bodyRot = 90;
+            player.setYBodyRot(90);
         }
     }
 
     @SubscribeEvent
-    public static void playerRenderPost(RenderPlayerEvent.Post<AbstractClientPlayer> event) {
-        AvatarRenderState renderState = event.getRenderState();
-        Avatar avatar = renderState.getRenderData(MARenderStateModifiers.AVATAR);
-        if(avatar == null) return;
-        if(ManAboveApi.get(avatar).isRidePlayer()) {
+    public static void playerRenderPost(RenderPlayerEvent.Post event) {
+        Player player = event.getEntity();
+        if(ManAboveApi.get(player).isRidePlayer()) {
             event.getPoseStack().popPose();
         }
     }
-
-//    @SubscribeEvent
-//    public static void cameraModify(ViewportEvent.ComputeCameraAngles event) {
-//        Minecraft instance = Minecraft.getInstance();
-//        LocalPlayer player = instance.player;
-//        if(player == null) return;
-//        ManAboveApi api = ManAboveApi.get(player);
-//        if(!api.isRidePlayer()) return;
-//        int pos = api.getRidePos();
-//        if(pos == 1) return;
-//        Camera camera = event.getCamera();
-//        float partialTick = (float) event.getPartialTick();
-//        if(!(player.getVehicle() instanceof AbstractClientPlayer target)) return;
-//        switch (pos) {
-//            case 2,3 -> {
-//                float bodyRot = target.yBodyRotO + (target.yBodyRot - target.yBodyRotO) * partialTick + 90;
-//                double zOffset = Math.cos(Math.toRadians(bodyRot)) * 0.3f;
-//                double xOffset = Math.sin(Math.toRadians(bodyRot)) * 0.3f;
-//                camera.position = player.getPosition(partialTick)
-//                        .add(xOffset, 0.15f + 1.65f * 0.25f, zOffset);
-//
-//            }
-//        }
-//
-//
-//    }
 }

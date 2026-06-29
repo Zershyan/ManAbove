@@ -9,7 +9,6 @@ import io.zershyan.manabove.network.data.RidePosData;
 import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
@@ -17,7 +16,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.InputEvent;
-import net.neoforged.neoforge.client.network.ClientPacketDistributor;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 @EventBusSubscriber(modid = ManAbove.MODID, value = Dist.CLIENT)
 public class KeyPressHandler {
@@ -27,17 +26,15 @@ public class KeyPressHandler {
         LocalPlayer player = instance.player;
         if(player == null) return;
         if(MAKeyBindings.KEY_RIDE.get().isDown()) {
-            Entity cameraEntity = instance.getCameraEntity();
-            if(cameraEntity == null) return;
-            HitResult pick = player.raycastHitResult(0.0f, cameraEntity);
+            HitResult pick = player.pick(0.0f, 0.0f, false);
             if(pick.getType() == HitResult.Type.ENTITY) {
                 EntityHitResult hitResult = (EntityHitResult) pick;
                 if(hitResult.getEntity() instanceof Player target) {
                     if(target.getVehicle() != player) {
-                        ClientPacketDistributor.sendToServer(new RidePlayerData(target.getUUID()));
+                        PacketDistributor.sendToServer(new RidePlayerData(target.getUUID()));
                         instance.options.setCameraType(CameraType.THIRD_PERSON_BACK);
                     } else {
-                        ClientPacketDistributor.sendToServer(new FlyPlayerUpData(target.getUUID()));
+                        PacketDistributor.sendToServer(new FlyPlayerUpData(target.getUUID()));
                     }
                 }
             }
@@ -48,7 +45,7 @@ public class KeyPressHandler {
             else if (MAKeyBindings.KEY_POS_2.get().isDown()) pos = 2;
             else if (MAKeyBindings.KEY_POS_3.get().isDown()) pos = 3;
             else if (MAKeyBindings.KEY_POS_4.get().isDown()) pos = 4;
-            if(pos != -1) ClientPacketDistributor.sendToServer(new RidePosData(pos));
+            if(pos != -1) PacketDistributor.sendToServer(new RidePosData(pos));
         }
     }
 }

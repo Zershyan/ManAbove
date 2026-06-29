@@ -3,7 +3,6 @@ package io.zershyan.manabove.common.registry;
 import io.zershyan.manabove.ManAbove;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -22,15 +21,13 @@ public class MASounds {
     public static final Holder<SoundEvent> WEIGHTLESSNESS = registerSoundEvent("weightlessness");
 
     private static Holder<SoundEvent> registerSoundEvent(String name) {
-        Holder<SoundEvent> soundEvent = REGISTRY.register(name, () -> SoundEvent.createVariableRangeEvent(
-                Identifier.fromNamespaceAndPath(ManAbove.MODID, name)));
+        Holder<SoundEvent> soundEvent = REGISTRY.register(name, () -> SoundEvent.createVariableRangeEvent(ManAbove.id(name)));
         SOUNDS.add(soundEvent);
         return soundEvent;
     }
 
     private static Holder<SoundEvent> registerSoundEvent(String name, int num) {
-        Holder<SoundEvent> soundEvent = REGISTRY.register(name, () -> SoundEvent.createVariableRangeEvent(
-                Identifier.fromNamespaceAndPath(ManAbove.MODID, name)));
+        Holder<SoundEvent> soundEvent = REGISTRY.register(name, () -> SoundEvent.createVariableRangeEvent(ManAbove.id(name)));
         SOUNDS_MAP.put(soundEvent, num);
         return soundEvent;
     }

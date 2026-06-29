@@ -2,9 +2,9 @@ package io.zershyan.manabove;
 
 import com.mojang.logging.LogUtils;
 import io.zershyan.manabove.client.registry.MAKeyBindings;
-import io.zershyan.manabove.client.registry.MARenderStateModifiers;
 import io.zershyan.manabove.common.registry.MAAttachments;
 import io.zershyan.manabove.common.registry.MASounds;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -28,8 +28,10 @@ public class ManAbove {
     public static class Client {
         public Client(IEventBus modEventBus, ModContainer modContainer) {
             MAKeyBindings.register(modEventBus);
-            MARenderStateModifiers.register(modEventBus);
         }
     }
 
+    public static ResourceLocation id(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MODID, path);
+    }
 }

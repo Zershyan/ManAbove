@@ -21,13 +21,13 @@ public class MAAttachments {
     static {
         VEHICLE = REGISTRY.register("vehicle", () -> AttachmentType
                 .builder(() -> emptyUUID)
-                .serialize(UUIDUtil.CODEC.fieldOf("vehicle"))
+                .serialize(UUIDUtil.CODEC)
                 .sync(UUIDUtil.STREAM_CODEC)
                 .copyOnDeath()
                 .build());
         RIDE_POS = REGISTRY.register("ride_pos", () -> AttachmentType
                 .builder(() -> 1)
-                .serialize(Codec.INT.fieldOf("ride_pos"))
+                .serialize(Codec.INT)
                 .sync(ByteBufCodecs.INT)
                 .copyOnDeath()
                 .build());

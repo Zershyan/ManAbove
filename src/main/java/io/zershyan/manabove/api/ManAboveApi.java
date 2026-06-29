@@ -54,7 +54,7 @@ public class ManAboveApi {
 
     public void startRide(Player target) {
         if(entity.level().isClientSide()) return;
-        if (entity.startRiding(target, false, true)) {
+        if (entity.startRiding(target, false)) {
             entity.setData(MAAttachments.VEHICLE, target.getUUID());
         }
     }

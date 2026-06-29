@@ -1,10 +1,8 @@
 package io.zershyan.manabove.client.registry;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import io.zershyan.manabove.ManAbove;
 import io.zershyan.manabove.datagen.init.MATranslatableLang;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.resources.Identifier;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.settings.KeyConflictContext;
@@ -17,7 +15,6 @@ import java.util.List;
 
 public class MAKeyBindings {
     public static final List<Lazy<KeyMapping>> keys = new ArrayList<>();
-    public static final KeyMapping.Category CATEGORY = new KeyMapping.Category(Identifier.fromNamespaceAndPath(ManAbove.MODID, "category"));
 
     public static final Lazy<KeyMapping> KEY_RIDE = registerKeyMapping(MATranslatableLang.KEY_RIDE.getKey());
     public static final Lazy<KeyMapping> KEY_POS_1 = registerCtrlKeyMapping(MATranslatableLang.KEY_POS_1.getKey(), GLFW.GLFW_KEY_1);
@@ -26,19 +23,18 @@ public class MAKeyBindings {
     public static final Lazy<KeyMapping> KEY_POS_4 = registerCtrlKeyMapping(MATranslatableLang.KEY_POS_4.getKey(), GLFW.GLFW_KEY_4);
 
     private static Lazy<KeyMapping> registerKeyMapping(String name) {
-        Lazy<KeyMapping> mappingLazy = Lazy.of(() -> new KeyMapping(name, KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_R, CATEGORY));
+        Lazy<KeyMapping> mappingLazy = Lazy.of(() -> new KeyMapping(name, KeyConflictContext.IN_GAME, InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_R, MATranslatableLang.KEY_CATEGORY.getKey()));
         keys.add(mappingLazy);
         return mappingLazy;
     }
 
     private static Lazy<KeyMapping> registerCtrlKeyMapping(String name, int keyValue) {
-        Lazy<KeyMapping> mappingLazy = Lazy.of(() -> new KeyMapping(name, KeyConflictContext.IN_GAME, KeyModifier.CONTROL, InputConstants.Type.KEYSYM, keyValue, CATEGORY));
+        Lazy<KeyMapping> mappingLazy = Lazy.of(() -> new KeyMapping(name, KeyConflictContext.IN_GAME, KeyModifier.CONTROL, InputConstants.Type.KEYSYM, keyValue, MATranslatableLang.KEY_CATEGORY.getKey()));
         keys.add(mappingLazy);
         return mappingLazy;
     }
 
     public static void registerKeyBinding(RegisterKeyMappingsEvent event) {
-        event.registerCategory(CATEGORY);
         MAKeyBindings.keys.stream().map(Lazy::get).forEach(event::register);
     }
 

@@ -4,8 +4,8 @@ import io.zershyan.manabove.ManAbove;
 import io.zershyan.manabove.common.registry.MASounds;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +38,7 @@ public class MALang {
 
     public static String getKey(Holder<?> holder){
         ResourceKey<?> resourceKey = holder.unwrapKey().orElseThrow();
-        if(resourceKey.registry().equals(Registries.SOUND_EVENT.identifier())) {
+        if(resourceKey.registry().equals(Registries.SOUND_EVENT.location())) {
             return getSoundKey(getPath(holder));
         } else throw new IllegalArgumentException("Unknown registry: " + resourceKey.registry());
     }
@@ -49,8 +49,8 @@ public class MALang {
 
     public static String getPath(Holder<?> holder) {
         return holder.unwrapKey()
-                .map(ResourceKey::identifier)
-                .map(Identifier::getPath)
+                .map(ResourceKey::location)
+                .map(ResourceLocation::getPath)
                 .orElse("");
     }
 }

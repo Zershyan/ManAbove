@@ -8,12 +8,15 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
 
+import java.util.Optional;
+
 public class MAPackMetadataProvider extends PackMetadataGenerator {
     public MAPackMetadataProvider(PackOutput output) {
         super(output);
-        add(PackMetadataSection.forPackType(PackType.SERVER_DATA), new PackMetadataSection(
+        add(PackMetadataSection.TYPE, new PackMetadataSection(
                 Component.translatable(MATranslatableLang.RESOURCES.getKey()),
-                DetectedVersion.BUILT_IN.packVersion(PackType.SERVER_DATA).minorRange()
+                DetectedVersion.BUILT_IN.getPackVersion(PackType.SERVER_DATA),
+                Optional.empty()
         ));
     }
 
