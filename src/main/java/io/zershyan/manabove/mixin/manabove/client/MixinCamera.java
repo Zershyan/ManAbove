@@ -35,8 +35,7 @@ public abstract class MixinCamera {
         if(!(player.getVehicle() instanceof AbstractClientPlayer target)) return;
         Minecraft instance = Minecraft.getInstance();
         if(!instance.options.getCameraType().isFirstPerson()) return;
-        float partialTicks = getPartialTickTime();
-        float bodyRot = target.yBodyRotO + (target.yBodyRot - target.yBodyRotO) * partialTicks;
+        float bodyRot = target.yBodyRotO + (target.yBodyRot - target.yBodyRotO) * partialTick;
         Vec3 position = switch (pos) {
             case 1 -> player.position().add(0, -1.2f * PlayerRenderHandler.pos1Scale, 0);
             case 2,3 -> {
@@ -45,7 +44,7 @@ public abstract class MixinCamera {
                 double zOffset = Math.cos(Math.toRadians(bodyRot)) * offset;
                 double xOffset = Math.sin(Math.toRadians(bodyRot)) * offset;
                 float yOffset = 0.15f + player.getEyeHeight() * PlayerRenderHandler.pos2and3Scale;
-                yield player.getPosition(partialTicks).add(zOffset, yOffset, xOffset);
+                yield player.getPosition(partialTick).add(zOffset, yOffset, xOffset);
             }
             case 4 -> {
                 bodyRot -= 90;

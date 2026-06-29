@@ -1,12 +1,9 @@
 package io.zershyan.manabove.mixin.manabove.common;
 
-import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import io.zershyan.manabove.api.ManAboveApi;
 import io.zershyan.manabove.common.registry.MAAttachments;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,16 +18,16 @@ public class MixinEntity {
     @Shadow
     private AABB bb;
 
-    @WrapOperation(
-            method = "startRiding(Lnet/minecraft/world/entity/Entity;)Z",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/EntityType;canSerialize()Z")
-    )
-    public boolean startRiding(EntityType<?> instance, Operation<Boolean> original, Entity entityToRide) {
-        boolean call = original.call(instance);
-        if(Entity.class.cast(this) instanceof Player)
-            call |= entityToRide instanceof Player;
-        return call;
-    }
+//    @WrapOperation(
+//            method = "startRiding(Lnet/minecraft/world/entity/Entity;)Z",
+//            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/EntityType;canSerialize()Z")
+//    )
+//    public boolean startRiding(EntityType<?> instance, Operation<Boolean> original, Entity entityToRide) {
+//        boolean call = original.call(instance);
+//        if(Entity.class.cast(this) instanceof Player)
+//            call |= entityToRide instanceof Player;
+//        return call;
+//    }
 
     @Inject(
             method = "getBoundingBox",

@@ -19,7 +19,7 @@ public class PlayerRenderHandler {
     public static final float pos4Offset = 0.25f;
 
     @SubscribeEvent
-    public static void playerRenderPre(RenderPlayerEvent event) {
+    public static void playerRenderPre(RenderPlayerEvent.Pre event) {
         Player player = event.getEntity();
         if(ManAboveApi.get(player).isRidePlayer()) {
             int pos = ManAboveApi.get(player).getRidePos();
@@ -57,7 +57,7 @@ public class PlayerRenderHandler {
                     poseStack.translate(pos4Offset, -0.4f, 0);
                 }
             }
-            player.setYBodyRot(90);
+            player.yBodyRot = 90;
         }
     }
 

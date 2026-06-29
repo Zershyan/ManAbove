@@ -10,8 +10,10 @@ import net.minecraft.client.CameraType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -24,12 +26,24 @@ public class KeyPressHandler {
     public static void onKeyPress(InputEvent.Key event) {
         Minecraft instance = Minecraft.getInstance();
         LocalPlayer player = instance.player;
+        if(instance.level == null) return;
         if(player == null) return;
         if(MAKeyBindings.KEY_RIDE.get().isDown()) {
-            HitResult pick = player.pick(0.0f, 0.0f, false);
-            if(pick.getType() == HitResult.Type.ENTITY) {
-                EntityHitResult hitResult = (EntityHitResult) pick;
-                if(hitResult.getEntity() instanceof Player target) {
+            Vec3 eyePos = player.getEyePosition();
+            Vec3 viewVec = player.getViewVector(1.0f);
+            Vec3 endPos = eyePos.add(viewVec.scale(5.0));
+
+            EntityHitResult result = ProjectileUtil.getEntityHitResult(
+                    instance.level,
+                    player,
+                    eyePos,
+                    endPos,
+                    player.getBoundingBox().expandTowards(viewVec).inflate(1.0),
+                    entity -> !entity.isSpectator() && entity.isPickable()
+            );
+            if(result == null) return;
+            if(result.getType() == HitResult.Type.ENTITY) {
+                if(result.getEntity() instanceof Player target) {
                     if(target.getVehicle() != player) {
                         PacketDistributor.sendToServer(new RidePlayerData(target.getUUID()));
                         instance.options.setCameraType(CameraType.THIRD_PERSON_BACK);
