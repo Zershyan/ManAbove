@@ -9,7 +9,8 @@
 		"manabove.common.MixinServerEntity"
 	],
 	"client": [
-		"manabove.client.MixinCamera"
+		"manabove.client.MixinCamera",
+		"manabove.client.MixinPlayerRenderer"
 	],
 	"injectors": {
 		"defaultRequire": 1

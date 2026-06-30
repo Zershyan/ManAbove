@@ -57,7 +57,6 @@ public class PlayerRenderHandler {
                     poseStack.translate(pos4Offset, -0.4f, 0);
                 }
             }
-            player.yBodyRot = 90;
         }
     }
 

@@ -1,6 +1,7 @@
 package io.zershyan.manabove.api;
 
 import io.zershyan.manabove.ManAbove;
+import io.zershyan.manabove.common.handler.ServerTIckHandler;
 import io.zershyan.manabove.common.registry.MAAttachments;
 import io.zershyan.manabove.common.registry.MASounds;
 import io.zershyan.manabove.network.data.SoundData;
@@ -28,10 +29,6 @@ public class ManAboveApi {
     public static ManAboveApi get(@NotNull Entity entity) {
         return new ManAboveApi(entity);
     }
-
-//    public boolean isServerPlayer() {
-//        return entity instanceof ServerPlayer;
-//    }
 
     public boolean isRide(@Nullable Entity vehicle) {
         if(vehicle == null) return false;
@@ -74,10 +71,12 @@ public class ManAboveApi {
         target.stopRiding();
         entity.ejectPassengers();
         Vec3 viewVector = entity.getViewVector(0);
-        target.setDeltaMovement(viewVector.scale(15));
-        target.hurtMarked = true;
-        target.setOnGround(false);
-        target.fallDistance = 0.0f;
+        ServerTIckHandler.addDelayRunnable(() -> {
+            target.setDeltaMovement(viewVector.scale(15));
+            target.hurtMarked = true;
+            target.setOnGround(false);
+            target.fallDistance = 0.0f;
+        }, 1);
         if(entity instanceof Player player) {
             player.swing(InteractionHand.MAIN_HAND, true);
         }

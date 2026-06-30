@@ -4,7 +4,7 @@ import io.zershyan.manabove.network.data.SoundData;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.sounds.SoundSource;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 public class ClientPayloadHandler {
@@ -15,7 +15,7 @@ public class ClientPayloadHandler {
             LocalPlayer player = instance.player;
             if(level == null) return;
             if(player == null) return;
-            instance.getSoundManager().play(SimpleSoundInstance.forMusic(sound.soundEvent()));
+            level.playLocalSound(player, sound.soundEvent(), SoundSource.PLAYERS, 1.0f, 1.0f);
         });
     }
 }

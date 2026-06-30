@@ -18,17 +18,6 @@ public class MixinEntity {
     @Shadow
     private AABB bb;
 
-//    @WrapOperation(
-//            method = "startRiding(Lnet/minecraft/world/entity/Entity;)Z",
-//            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/EntityType;canSerialize()Z")
-//    )
-//    public boolean startRiding(EntityType<?> instance, Operation<Boolean> original, Entity entityToRide) {
-//        boolean call = original.call(instance);
-//        if(Entity.class.cast(this) instanceof Player)
-//            call |= entityToRide instanceof Player;
-//        return call;
-//    }
-
     @Inject(
             method = "getBoundingBox",
             at = @At(value = "RETURN"),

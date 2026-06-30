@@ -37,7 +37,7 @@ public abstract class MixinCamera {
         if(!instance.options.getCameraType().isFirstPerson()) return;
         float bodyRot = target.yBodyRotO + (target.yBodyRot - target.yBodyRotO) * partialTick;
         Vec3 position = switch (pos) {
-            case 1 -> player.position().add(0, -1.2f * PlayerRenderHandler.pos1Scale, 0);
+            case 1 -> player.position().add(0, -1.2f * PlayerRenderHandler.pos1Scale + 1.8f, 0);
             case 2,3 -> {
                 float offset = PlayerRenderHandler.pos2and3ShoulderOffset;
                 if(pos == 3) offset *= -1;
@@ -50,7 +50,7 @@ public abstract class MixinCamera {
                 bodyRot -= 90;
                 double zOffset = Math.cos(Math.toRadians(bodyRot)) * PlayerRenderHandler.pos4Offset;
                 double xOffset = Math.sin(Math.toRadians(bodyRot)) * PlayerRenderHandler.pos4Offset;
-                yield player.position().add(zOffset, -0.3, xOffset);
+                yield player.position().add(zOffset, 1.2f, xOffset);
             }
             default -> player.position();
         };

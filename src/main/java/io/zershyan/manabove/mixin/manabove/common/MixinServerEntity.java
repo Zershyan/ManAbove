@@ -19,7 +19,7 @@ public class MixinServerEntity {
 
     @Inject(
             method = "sendChanges",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerEntity$Synchronizer;sendToTrackingPlayersFiltered(Lnet/minecraft/network/protocol/Packet;Ljava/util/function/Predicate;)V")
+            at = @At(value = "INVOKE", target = "Ljava/util/function/Consumer;accept(Ljava/lang/Object;)V")
     )
     public void sendPassengerChange(CallbackInfo ci) {
         if(this.entity instanceof ServerPlayer player) {
