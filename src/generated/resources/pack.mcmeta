@@ -3,10 +3,6 @@
     "description": {
       "translate": "manabove.resources"
     },
-    "max_format": 101,
-    "min_format": [
-      101,
-      1
-    ]
+    "pack_format": 48
   }
 }
