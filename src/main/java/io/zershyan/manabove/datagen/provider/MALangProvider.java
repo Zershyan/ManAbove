@@ -44,7 +44,6 @@ public class MALangProvider extends LanguageProvider {
             case MobEffect object -> add(object, string);
             case EntityType<?> object -> add(object, string);
             case TagKey<?> object -> add(object, string);
-//            case Holder<?> object -> add(SUAPLang.getKey(object), string);
             default -> {
                 LogUtils.getLogger().error("Unknown object type: {}", o.getClass());
                 add(o.toString(), string);

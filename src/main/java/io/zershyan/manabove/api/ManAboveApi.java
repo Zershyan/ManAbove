@@ -29,10 +29,6 @@ public class ManAboveApi {
         return new ManAboveApi(entity);
     }
 
-//    public boolean isServerPlayer() {
-//        return entity instanceof ServerPlayer;
-//    }
-
     public boolean isRide(@Nullable Entity vehicle) {
         if(vehicle == null) return false;
         return vehicle.getUUID().equals(entity.getData(MAAttachments.VEHICLE));

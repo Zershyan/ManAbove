@@ -8,6 +8,7 @@ import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import net.minecraft.world.entity.Avatar;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderPlayerEvent;
@@ -20,7 +21,7 @@ public class PlayerRenderHandler {
     public static final float pos2and3ShoulderOffset = 0.3f;
     public static final float pos4Offset = 0.25f;
 
-    @SubscribeEvent
+    @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void playerRenderPre(RenderPlayerEvent.Pre<AbstractClientPlayer> event) {
         AvatarRenderState renderState = event.getRenderState();
         Avatar avatar = renderState.getRenderData(MARenderStateModifiers.AVATAR);
@@ -74,30 +75,4 @@ public class PlayerRenderHandler {
             event.getPoseStack().popPose();
         }
     }
-
-//    @SubscribeEvent
-//    public static void cameraModify(ViewportEvent.ComputeCameraAngles event) {
-//        Minecraft instance = Minecraft.getInstance();
-//        LocalPlayer player = instance.player;
-//        if(player == null) return;
-//        ManAboveApi api = ManAboveApi.get(player);
-//        if(!api.isRidePlayer()) return;
-//        int pos = api.getRidePos();
-//        if(pos == 1) return;
-//        Camera camera = event.getCamera();
-//        float partialTick = (float) event.getPartialTick();
-//        if(!(player.getVehicle() instanceof AbstractClientPlayer target)) return;
-//        switch (pos) {
-//            case 2,3 -> {
-//                float bodyRot = target.yBodyRotO + (target.yBodyRot - target.yBodyRotO) * partialTick + 90;
-//                double zOffset = Math.cos(Math.toRadians(bodyRot)) * 0.3f;
-//                double xOffset = Math.sin(Math.toRadians(bodyRot)) * 0.3f;
-//                camera.position = player.getPosition(partialTick)
-//                        .add(xOffset, 0.15f + 1.65f * 0.25f, zOffset);
-//
-//            }
-//        }
-//
-//
-//    }
 }
