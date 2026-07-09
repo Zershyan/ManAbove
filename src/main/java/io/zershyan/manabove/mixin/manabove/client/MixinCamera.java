@@ -20,9 +20,6 @@ public abstract class MixinCamera {
     @Shadow
     protected abstract void setPosition(Vec3 pos);
 
-    @Shadow
-    public abstract float getPartialTickTime();
-
     @Inject(
             method = "setup",
             at = @At("TAIL")
