@@ -1,11 +1,16 @@
 {
-  "DeferredHolder{ResourceKey[minecraft:sound_event / manabove:pretentious]}": "装逼！",
-  "DeferredHolder{ResourceKey[minecraft:sound_event / manabove:weightlessness]}": "有强烈失重感",
-  "manabove.message..key.category": "高人一等",
-  "manabove.message..key.pos_1": "默认姿势",
-  "manabove.message..key.pos_2": "坐到左肩",
-  "manabove.message..key.pos_3": "坐到右肩",
-  "manabove.message..key.pos_4": "骑大马",
-  "manabove.message..key.ride": "高人一等/飞起来",
-  "manabove.resources": "Resources for ManAbove"
+  "manabove.message.disable": "§c不启用",
+  "manabove.message.disabled": "§7ManAbove音效已关闭",
+  "manabove.message.enable": "§a启用",
+  "manabove.message.enabled": "§7ManAbove音效已开启",
+  "manabove.message.key.category": "高人一等",
+  "manabove.message.key.pos_1": "默认姿势",
+  "manabove.message.key.pos_2": "坐到左肩",
+  "manabove.message.key.pos_3": "坐到右肩",
+  "manabove.message.key.pos_4": "骑大马",
+  "manabove.message.key.ride": "高人一等/飞起来",
+  "manabove.message.sound.enabled_tips": "§7[此消息仅会显示一次] 启用ManAbove音效？点击：%s§7/%s",
+  "manabove.resources": "Resources for ManAbove",
+  "subtitle.manabove.sound.pretentious": "装逼！",
+  "subtitle.manabove.sound.weightlessness": "有强烈失重感"
 }

@@ -3,6 +3,7 @@ package io.zershyan.manabove.datagen.provider;
 import com.mojang.logging.LogUtils;
 import io.zershyan.manabove.ManAbove;
 import io.zershyan.manabove.datagen.init.MALang;
+import net.minecraft.core.Holder;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffect;
@@ -44,6 +45,7 @@ public class MALangProvider extends LanguageProvider {
             case MobEffect object -> add(object, string);
             case EntityType<?> object -> add(object, string);
             case TagKey<?> object -> add(object, string);
+            case Holder<?> object -> add(MALang.getKey(object), string);
             default -> {
                 LogUtils.getLogger().error("Unknown object type: {}", o.getClass());
                 add(o.toString(), string);
