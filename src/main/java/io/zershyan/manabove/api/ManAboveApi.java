@@ -69,6 +69,7 @@ public class ManAboveApi {
         target.stopRiding();
         entity.ejectPassengers();
         Vec3 viewVector = entity.getViewVector(0);
+        target.getAbilities().flying = false;
         target.setDeltaMovement(viewVector.scale(15));
         target.hurtMarked = true;
         target.setOnGround(false);
