@@ -1,4 +1,7 @@
 {
+  "manabove.configuration.enableSound": "Enable Sound",
+  "manabove.configuration.soundConfig": "Sound Config",
+  "manabove.configuration.tipOnFirstTime": "Show Tip",
   "manabove.message.disable": "§cDisable",
   "manabove.message.disabled": "§7ManAbove Sound Disabled",
   "manabove.message.enable": "§aEnable",

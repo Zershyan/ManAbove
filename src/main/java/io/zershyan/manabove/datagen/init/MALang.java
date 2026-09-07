@@ -28,6 +28,7 @@ public class MALang {
         langList.add(new LangEntity<>(MASounds.PRETENTIOUS, "装逼！", "Pretentious"));
 
         initTranslatableLang();
+        MAConfigLang.initLang(langList);
     }
 
     private static void initTranslatableLang() {

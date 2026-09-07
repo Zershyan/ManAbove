@@ -1,4 +1,7 @@
 {
+  "manabove.configuration.enableSound": "启用音效",
+  "manabove.configuration.soundConfig": "音效配置",
+  "manabove.configuration.tipOnFirstTime": "弹出提示",
   "manabove.message.disable": "§c不启用",
   "manabove.message.disabled": "§7ManAbove音效已关闭",
   "manabove.message.enable": "§a启用",
