@@ -16,17 +16,10 @@ public class ManAbove {
     public static final String MODID = "manabove";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    @Mod(ManAbove.MODID)
-    public static class Common {
-        public Common(IEventBus modEventBus, ModContainer modContainer) {
-            MASounds.register(modEventBus);
-            MAAttachments.register(modEventBus);
-        }
-    }
-
-    @Mod(value = ManAbove.MODID, dist = Dist.CLIENT)
-    public static class Client {
-        public Client(IEventBus modEventBus, ModContainer modContainer) {
+    public ManAbove(IEventBus modEventBus, Dist dist, ModContainer modContainer) {
+        MASounds.register(modEventBus);
+        MAAttachments.register(modEventBus);
+        if (dist.isClient()) {
             MAKeyBindings.register(modEventBus);
         }
     }
