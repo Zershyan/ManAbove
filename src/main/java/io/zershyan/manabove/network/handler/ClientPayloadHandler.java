@@ -35,7 +35,7 @@ public class ClientPayloadHandler {
             }
             SoundEvent soundEvent = sound.soundEvent();
             if(!ClientConfig.EnableSound.getAsBoolean()) soundEvent = SoundEvents.EXPERIENCE_ORB_PICKUP;
-            level.playLocalSound(player, soundEvent, SoundSource.PLAYERS, 1.0f, 1.0f);
+            player.playSound(soundEvent, 1.0f, 1.0f);
         });
     }
 }

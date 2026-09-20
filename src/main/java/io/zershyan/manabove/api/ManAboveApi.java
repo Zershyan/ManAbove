@@ -81,12 +81,12 @@ public class ManAboveApi {
             player.swing(InteractionHand.MAIN_HAND, true);
         }
         playWeightlessnessSound(target);
+        
     }
 
     private void playSound(Player target, SoundEvent soundEvent) {
         if(target instanceof ServerPlayer serverPlayer) {
             PacketDistributor.sendToPlayer(serverPlayer, new SoundData(soundEvent));
         }
-        entity.level().playSound(target, entity.blockPosition(), soundEvent, SoundSource.PLAYERS);
     }
 }

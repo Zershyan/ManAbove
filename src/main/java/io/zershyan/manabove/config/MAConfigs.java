@@ -12,7 +12,7 @@ public class MAConfigs {
         container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }
 
-    public static void doRegister(ModContainer container) {
+    public static void register(ModContainer container) {
         if (FMLLoader.getDist().isClient()) registerClient(container);
     }
 }
