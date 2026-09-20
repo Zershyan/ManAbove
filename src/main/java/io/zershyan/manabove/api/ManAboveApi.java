@@ -88,5 +88,8 @@ public class ManAboveApi {
         if(target instanceof ServerPlayer serverPlayer) {
             PacketDistributor.sendToPlayer(serverPlayer, new SoundData(soundEvent));
         }
+        if(entity instanceof ServerPlayer serverPlayer) {
+            PacketDistributor.sendToPlayer(serverPlayer, new SoundData(soundEvent));
+        }
     }
 }
